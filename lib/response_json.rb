@@ -1,39 +1,49 @@
 module ResponseJson
 
-	def msgJson msgCode,entity
-    case msgCode
+  def sendResponse codeName,entityData,appendJson
+    respond_to do |format|
+      format.json { 
+        render json: sendJson(codeName,entityData)
+                      .merge(appendJson) 
+      }         
+    end
+  end
+
+  def sendJson codeName, entityData
+    case codeName
     when "success"
       result = {code: 200, message: "Success"}
     when "customOk"
-      result = {code: 200, message: entity}
+      result = {code: 200, message: entityData}
     when "custom"
-      result = {code: 422, message: entity}
+      result = {code: 422, message: entityData}
     when "created"
-      result = {code: 201, message: "#{entity} created successfully" }
+      result = {code: 201, message: "#{entityData} created successfully" }
     when "accepted"
-    	result = {code: 202, message: "#{entity} accepted successfully" }
+      result = {code: 202, message: "#{entityData} accepted successfully" }
     when "updated"
-      result = {code: 205, message: "#{entity} updated successfully"}
+      result = {code: 205, message: "#{entityData} updated successfully"}
     when "bad"
       result = {code: 400, message: "Bad Request"}      
     when "unauthorized"
       result = {code: 401, message: "Unauthorized access"}      
     when "suspend"
-      result = {code: 403, message: "#{entity} suspend"}
+      result = {code: 403, message: "#{entityData} suspend"}
     when "not"
-      result = {code: 404, message: "#{entity} does not exists"}      
+      result = {code: 405, message: "#{entityData} does not exists"}      
     when "missing"
-      result = {code: 422, message: "Bad Request, #{entity} must be present."}
+      result = {code: 422, message: "Bad Request, #{entityData} must be present."}
     when "blank"
-      result = {code: 422, message: "#{entity} can't blank"}
+      result = {code: 422, message: "#{entityData} can't blank"}
     when "already"
-      result = {code: 422, message: "#{entity} already exists"}
+      result = {code: 422, message: "#{entityData} already exists"}
     when "sessionExpired"
-      result = {code: 345, message: entity}
+      result = {code: 345, message: entityData}
     when "guestExpired"
-      result = {code: 123, message: entity}
+      result = {code: 123, message: entityData}
     when "customCode"
-      result = {code: entity.to_s.split(':').first.to_i, message: entity.to_s.split(':').last}
+      # "customCode:customMsgHere" like "302:Custom message here"
+      result = {code: entityData.to_s.split(':').first.to_i, message: entityData.to_s.split(':').last}
     else
       result = {code: 420, message: "Unknown Request"}
     end
