@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  token: MyString
+  device_id: MyString
+  device_type: MyString
+  device_model: MyString
+  status: MyString
+  timeZone: MyString
+  user: one
+
+two:
+  token: MyString
+  device_id: MyString
+  device_type: MyString
+  device_model: MyString
+  status: MyString
+  timeZone: MyString
+  user: two
