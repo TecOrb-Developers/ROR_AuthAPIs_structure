@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 			scope :guest do
 		        get "identity"=> "guests#create"
 		    end
+
+		    scope :sessions do 
+		    	post "create" => "sessions#create"
+		    end
 		end
 	end
 
