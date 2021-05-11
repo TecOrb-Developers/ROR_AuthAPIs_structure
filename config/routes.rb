@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 			scope :guest do
 		        get "identity"=> "guests#create"
 		    end
-
+		    post "registration/create" => "registrations#create"
 		    scope :sessions do 
 		    	post "create" => "sessions#create"
 		    	delete "destroy" => "sessions#destroy"
