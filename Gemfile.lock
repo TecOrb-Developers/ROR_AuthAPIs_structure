@@ -74,6 +74,7 @@ GEM
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.3)
       aws-eventstream (~> 1, >= 1.0.2)
+    bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.7.4)
       msgpack (~> 1.0)
@@ -263,6 +264,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk-s3 (~> 1)
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
@@ -273,6 +275,7 @@ DEPENDENCIES
   puma (~> 4.1)
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.6)
+  redis (~> 4.0)
   redis-namespace
   sass-rails (>= 6)
   selenium-webdriver
