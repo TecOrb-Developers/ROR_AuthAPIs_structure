@@ -5,7 +5,7 @@ class CreateUserSessions < ActiveRecord::Migration[6.0]
       t.string :device_id
       t.string :device_type
       t.string :device_model
-      t.string :status
+      t.string :status, default: true
       t.string :timeZone
       t.references :user, null: false, foreign_key: true
 

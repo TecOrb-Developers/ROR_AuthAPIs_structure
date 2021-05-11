@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
 		    scope :sessions do 
 		    	post "create" => "sessions#create"
+		    	delete "destroy" => "sessions#destroy"
+				get "show" => "sessions#show"
 		    end
 		end
 	end

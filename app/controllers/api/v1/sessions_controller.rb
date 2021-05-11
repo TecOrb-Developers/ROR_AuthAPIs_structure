@@ -1,5 +1,6 @@
 class Api::V1::SessionsController < Api::V1::ApplicationController
 	before_action :require_visitor,:findUser, only: [:create]
+	before_action :require_login, except: [:create]
 
 	def create
 		begin
@@ -11,6 +12,15 @@ class Api::V1::SessionsController < Api::V1::ApplicationController
 		rescue Exception => e
 			sendResponse('unauthorized',"User",{})
 		end
+	end
+
+	def show
+		sendResponse('success',nil,userJson)
+	end
+
+	def destroy
+		@session.destroy
+		sendResponse('success',nil,{})
 	end
 
 	private
